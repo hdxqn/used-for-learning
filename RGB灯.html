@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <script src="js/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+  // var container=document.getElementById("container");
+  //   container.style.height=Math.floor(document.documentElement.clientHeight)+"px";
+  //   // 设置整个container的高度为屏幕实际高度
+  var arr=new Array(17);
+  arr[0]="#FA3B00";arr[1]="#F66200";arr[2]="#EF9800";arr[3]="#EAB600";arr[4]="#E7C600";
+  arr[5]="#E1DD00";arr[6]="#DBF400";arr[7]="#C3FD00";arr[8]="#98FA00";arr[9]="#6DF700";
+  arr[10]="#48F500";arr[11]="#2CED17";arr[12]="#2ADF50";arr[13]="#29D86C";arr[14]="#27CC9A";
+  arr[15]="#24BFB9";arr[16]="#159ACE";arr[17]="#0E89D9";arr[18]="#0570E6";arr[19]="#1057EF";
+  arr[20]="#2B42F3";arr[21]="#3F32F6";arr[22]="#6216FB";arr[23]="#8F00FE";arr[24]="#AA00F9";
+  arr[25]="#CB00F6";arr[26]="#DF00F4";arr[27]="#EF00E9";arr[28]="#FF0092";arr[29]="#FF0066";
+  arr[30]="#FF0025";
+    $(".tj input").bind({mouseup:num,touchend:num});
+    function num(){
+
+    	var i= $(this).val();
+    	if(i<=13){$("#scircle").css("background",arr[0]);}else if (i<=274){
+    		$("#scircle").css("background",arr[Math.floor((i-3)/10)]);
+    	}else if(i>274){
+    		$("#scircle").css("background",arr[30]);
+    	}
+    }
+})
+  </script>
+  <style type="text/css">
+ @charset "utf-8";
+/* CSS  */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6,pre, form, fieldset, input, textarea, p, blockquote, th, td {padding: 0; margin: 0;}    
+fieldset, img { border: 0; }    
+table {border-collapse: collapse;  border-spacing: 0;}    
+ol, ul {list-style: none; }    
+address, caption, cite, code, dfn, em, strong, th, var { font-weight: normal; font-style: normal;}    
+caption, th {text-align: left;}    
+h1, h2, h3, h4, h5, h6 {font-weight: normal;font-size: 100%;}    
+q:before, q:after {content: '';}    
+abbr, acronym {border: 0;}
+/* 清除浏览器默认样式*/
+*,*:before,*:after{
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+  /*设置该属性表示，不希望任何元素生产的填充或边框影响盒子的大小*/ 
+}
+html,body{width:100%;height: 100%;}
+#container{
+  font-family: "微软雅黑";
+
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom,#605CA1,#6599B8,#68C1C7);
+  z-index: -1;
+
+}
+#container #title{
+  text-align: center;
+  font-size: 2em;
+  color: rgba(192,192,218,1);
+  font-family: Arial,"Micrsoft: Yahei";
+
+}
+#container #color-area{
+  border-radius: 50%;
+  background-image: linear-gradient(to bottom,#8189B9,#8298BE,#83A6C4);
+  z-index: 2;
+  position: relative;
+ 
+  width: 270px;
+  height: 270px;
+  margin: 50px auto;
+
+}
+#container #color-area span{
+  display: block;
+  position: absolute;
+  margin: 0 auto;
+}
+#container #color-area #stitle{
+  width: 4em;
+  height: 2em;
+  line-height: 2em;
+  font-size: 2em;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  margin-left:-2em;
+  margin-top: -1em; 
+  font-weight: bold;
+  color: #EAEDF4;
+}
+#container #color-area #mstitle{
+ width: 5em;
+  height: 2em;
+  line-height: 2em;
+  font-size: 1.2em;
+  text-align: center;
+  top: 70%;
+  left: 50%;
+  margin-left:-2.5em;
+  margin-top: -1em; 
+  color: #EAEDF4;
+}
+#container #color-area #scircle{
+  width: 2em;
+  height: 2em;
+  left: 50%;
+  margin-left: -1em;
+  top:85%;
+  border-radius: 50%;
+  background: #1DF5ED;
+  z-index: 3;
+}
+#container #switch{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	
+	margin: 0 auto;
+}
+#container #switch img{
+	max-width: 100%;
+	max-height: 100%;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+.control{
+	display: block;
+	margin: 10px auto;
+	height: 60px;
+	width: 290px;
+	border-radius: 10px;
+	background-image: linear-gradient(to right,#60ABB8,#60ACB9,#60ABB8);
+	z-index: 3;
+
+}
+.control span{
+	display: block;
+	height: 30px;
+	width: 100%
+	line-height:30px;
+	padding-left: 10px;
+	color: #FFFFFF;
+	
+}
+.control span input{
+	width: 200px;
+	height: 7px;
+	display: inline-block;
+  -webkit-appearance: none;
+    background-image: linear-gradient(to right,#FF0E00,#EDAC00,#D9FF00,#2DF300,#26C5B6,#0064ED,#7E00FF,#FF00F0,#FF000F);
+    border-radius: 5px;
+    position: relative;
+
+}
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  margin-top: -2px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #CDE3E6, 0px 0px 1px #CDE3E6; /* Add cool effects to your sliders! */
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #CDE3E6, 0px 0px 1px #CDE3E6;
+  border: 1px solid #000000;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #CDE3E6, 0px 0px 1px #CDE3E6;
+  border: 1px solid #000000;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+#wb{
+	background-image: linear-gradient(to right,#B4D5D7,#D1D1D1,#B4B4B4,#8C8B8B,#666565,#545454,#414040,#201F1F,#030202);
+}
+  </style>
+  <title>RGB灯</title>
+</head>
+<body>
+<div id="container">
+
+    <div id="title">RGB灯</div>
+
+ <!--  第一行结束 -->
+
+    <div  id="color-area">
+        <span id="stitle">RGB灯</span>
+        <span id="mstitle">当前颜色</span>
+        <span id="scircle"></span>
+    </div>
+
+  <!-- 第二行结束 -->
+  <div id="switch">
+  	<img src="img/power.png" alt="">
+  </div>
+  <!-- 开关结束 -->
+  <div class="control">
+  	<span class="tl">色温</span>
+  	<span class="tj">暖黄&nbsp;&nbsp;<input type="range" name="points" min="1" max="300">&nbsp;&nbsp;白</span>
+  </div>
+  <div class="control">
+  	<span class="tl">亮度</span>
+  	<span class="tj">白&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="range" id="wb">&nbsp;&nbsp;黑</span>
+  </div>
+</div>
+  
+</body>
+</html>

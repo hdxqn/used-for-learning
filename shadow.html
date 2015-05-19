@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css3阴影</title>
+	<style type="text/css">
+		@charset "utf-8";
+/* CSS  */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6,pre, form, fieldset, input, textarea, p, blockquote, th, td {padding: 0; margin: 0;}    
+fieldset, img { border: 0; }    
+table {border-collapse: collapse;  border-spacing: 0;}    
+ol, ul {list-style: none; }    
+address, caption, cite, code, dfn, em, strong, th, var { font-weight: normal; font-style: normal;}    
+caption, th {text-align: left;}    
+h1, h2, h3, h4, h5, h6 {font-weight: normal;font-size: 100%;}    
+q:before, q:after {content: '';}    
+abbr, acronym {border: 0;}
+/* 清除浏览器默认样式*/
+
+	body{
+		font-family: Arial;
+		font-size: 20px;
+	}
+	.wrap{
+		width: 70%;
+		height: 200px;
+		margin: 50px auto;
+		background: #fff;
+	}
+	.wrap h1{
+		font-size: 20px;
+		text-align: center;
+		line-height: 200px;
+	}
+	.effect{
+		position: relative;
+		box-shadow:0px 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+		-webkit-box-shadow:0px 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+		-moz-box-shadow:0px 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+		-o-box-shadow:0px 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+	}
+	.effect:after,.effect:before{
+		content: '';
+		position: absolute;
+		z-index: -1;
+		top: 50%;
+		bottom: 0;
+		left: 10px;
+		right: 10px;
+		box-shadow:0px 0px 20px rgba(0,0,0,0.8);
+		-webkit-box-shadow:0px 0px 20px rgba(0,0,0,0.8);
+		-moz-box-shadow:0px 0px 20px rgba(0,0,0,0.8);
+		-o-box-shadow:0px 0px 20px rgba(0,0,0,0.8);
+		border-radius: 100px/10px;
+		-webkit-border-radius: 100px/10px;
+	    -moz-border-radius: 100px/10px;
+	    -ms-border-radius: 100px/10px;
+	    -o-border-radius: 100px/10px;
+	}
+	.box{
+		width: 980px;
+		height: auto;
+		clear: both;
+		overflow: hidden;
+		margin: 20px auto;
+	}
+	.box li{
+		width: 300px;
+		height: 300px;
+		background: #fff;
+		position: relative;
+		float: left;
+		margin: 20px 10px;
+		border: 2px solid #efefef;
+		box-shadow:0px 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+		-webkit-box-shadow:0px 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+		-moz-box-shadow:0px 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+		-o-box-shadow:0px 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+	}
+	.box li img{
+		display: block;
+		width: 290px;
+		height: 290px;
+		margin: 5px;
+	}
+	.box li:before{
+		content: '';
+		position: absolute;
+		z-index: -2;
+		width: 89%;
+		height: 80%;
+		left: 17px;
+		bottom: 9px;
+		background:transparent;
+		box-shadow:0px 8px 20px rgba(0,0,0,0.6);
+		-webkit-box-shadow:0px 8px 20px rgba(0,0,0,0.6);
+		-moz-box-shadow:0px 8px 20px rgba(0,0,0,0.6);
+		-o-box-shadow:0px 8px 20px rgba(0,0,0,0.6);
+		-webkit-transform:skew(-12deg) rotate(-4deg);
+		-moz-transform:skew(-12deg) rotate(-4deg);
+		-o-transform:skew(-12deg) rotate(-4deg);
+		-ms-transform:skew(-12deg) rotate(-4deg);
+	}
+	
+		.box li:after{
+		content: '';
+		position: absolute;
+		z-index: -2;
+		width: 89%;
+		height: 80%;
+		right: 17px;
+		bottom: 9px;
+		background:transparent;
+		box-shadow:0px 8px 20px rgba(0,0,0,0.6);
+		-webkit-box-shadow:0px 8px 20px rgba(0,0,0,0.6);
+		-moz-box-shadow:0px 8px 20px rgba(0,0,0,0.6);
+		-o-box-shadow:0px 8px 20px rgba(0,0,0,0.6);
+		-webkit-transform:skew(12deg) rotate(4deg);
+		-moz-transform:skew(12deg) rotate(4deg);
+		-o-transform:skew(12deg) rotate(4deg);
+		-ms-transform:skew(12deg) rotate(4deg);
+	}
+	
+	</style>
+</head>
+<body>
+	<div class="wrap effect">
+		<h1>Shadow Effect</h1>
+	</div>
+	<ul class="box">
+		<li><img src="img/1.jpg"></li>
+		<li><img src="img/2.jpg"></li>
+		<li><img src="img/3.jpg"></li>
+	</ul>
+</body>
+</html>

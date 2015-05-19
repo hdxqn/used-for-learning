@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>报名表单</title>
+	<link type="text/css" rel="stylesheet" href="css/signUp.css">
+	<script src="jquery-2.1.3.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<form class="signUpform" action="#" method="post" name="signUp">
+			<!-- 报名表单-->
+			<ul>
+			    <li>
+			    	<h2>报名</h2>
+			    	<span class="explain">* 表示必填项</span>
+			    </li>
+				<li>
+					<label for="signUpName" class="li-1st">姓名</label>
+					<input type="text" name="signUpName" placeholder="您的姓名" required />
+					<span class="hint">正确格式：张三丰</span>
+				</li>
+				<li>
+					<label for="signUpSchool" class="li-1st">学校</label>
+					<input type="text" name="signUpSchool" placeholder="您的学校名称" required />
+					<span class="hint">正确格式：XXX大学</span>
+				</li>
+				<li>
+					<label for="signUpGrade" class="li-1st">年级</label>
+					<input type="radio" name="signUpGrade" /><label>大一</label>
+					<input type="radio" name="signUpGrade" /><label>大二</label>
+					<input type="radio" name="signUpGrade" /><label>大三</label>
+					<input type="radio" name="signUpGrade" /><label>大四</label>
+					<input type="radio" name="signUpGrade" /><label>研一</label>
+					<input type="radio" name="signUpGrade" /><label>研二</label>
+					<input type="radio" name="signUpGrade" /><label>研三</label>
+				</li>
+				<li>
+					<label for="signUpJob" class="li-1st">技术岗位</label>
+					<select name="signUpJob">
+						<option value="C++">C++</option>
+						<option value="Java" selected="selected">Java</option>
+						<option value="Datebase">数据库</option>
+					</select>
+				</li>
+				<li>
+					<label for="signUpFile" class="li-1st">上传附件</label>
+					<input type="file" name="signUpFile" placeholder="" required/>
+				</li>
+				<li>
+					<button class="submit" type="submit">提交</button>
+				</li>
+			</ul>
+		</form>
+
+	</div>
+</body>
+</html>
