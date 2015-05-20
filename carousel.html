@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>旋转木马效果</title>
+	<script src="js/jquery-2.1.3.min.js"></script>
+	<script src="js/carousel.js"></script>
+	<style type="text/css">
+	@charset "utf-8";
+/* CSS  */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6,pre, form, fieldset, input, textarea, p, blockquote, th, td {padding: 0; margin: 0;}    
+fieldset, img { border: 0; }    
+table {border-collapse: collapse;  border-spacing: 0;}    
+ol, ul {list-style: none; }    
+address, caption, cite, code, dfn, em, strong, th, var { font-weight: normal; font-style: normal;}    
+caption, th {text-align: left;}    
+h1, h2, h3, h4, h5, h6 {font-weight: normal;font-size: 100%;}    
+q:before, q:after {content: '';}    
+abbr, acronym {border: 0;}
+/* 清除浏览器默认样式*/
+.poster-main{
+	width: 800px;
+	height:500px;
+	position: relative;
+}
+.poster-main a,.poster-main img{
+	display: block;
+	overflow: hidden;
+}
+.poster-main .poster-list{
+	width: 800px;
+	height: 500px;
+}
+.poster-main .poster-list .poster-item{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.poster-main .poster-btn{
+	width: 100px;
+	height: 500px;
+	position: absolute;
+	top: 0;
+	z-index: 10;
+	cursor: pointer;
+}
+.poster-main .poster-prev-btn{
+	left: 0;
+	background: url(img/btn_l.png) no-repeat center center;
+}
+.poster-main .poster-next-btn{
+	right: 0;
+	background: url(img/btn_r.png) no-repeat center center;
+}
+</style>
+
+</head>
+<body>
+	<div class="J_poster poster-main"  date-setting='{
+			"width":1000,
+			"height":500,
+			"posterWidth":800,
+			"posterHeight":500,
+			"scale":0.9,
+			"speed":500,
+			"verticalAlign":"middle"
+		}'>
+		<div class="poster-btn poster-prev-btn"></div>
+		<ul class="poster-list">
+			<li class="poster-item"><a href="#"><img src="img/10.jpg" alt="" width="100%"></a></li>
+			<li class="poster-item"><a href="#"><img src="img/11.jpg" alt="" width="100%"></a></li>
+			<li class="poster-item"><a href="#"><img src="img/12.jpg" alt="" width="100%"></a></li>
+			<li class="poster-item"><a href="#"><img src="img/13.jpg" alt="" width="100%"></a></li>
+			<li class="poster-item"><a href="#"><img src="img/14.jpg" alt="" width="100%"></a></li>
+			<li class="poster-item"><a href="#"><img src="img/10.jpg" alt="" width="100%"></a></li>
+			<li class="poster-item"><a href="#"><img src="img/11.jpg" alt="" width="100%"></a></li>
+			<li class="poster-item"><a href="#"><img src="img/12.jpg" alt="" width="100%"></a></li>
+			<li class="poster-item"><a href="#"><img src="img/13.jpg" alt="" width="100%"></a></li>
+		</ul>
+		<div class="poster-btn poster-next-btn"></div>
+	</div>
+
+
+
+<script type="text/javascript">
+	$(function(){
+		
+		//定义一个旋转木马类Carousel
+		Carousel.init($(".J_poster"));
+	});
+
+</script>
+</body>
+</html>
