@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试</title>
+	<style type="text/css">
+			@charset "utf-8";
+/* CSS  */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6,pre, form, fieldset, input, textarea, p, blockquote, th, td {padding: 0; margin: 0;}    
+fieldset, img { border: 0; }    
+table {border-collapse: collapse;  border-spacing: 0;}    
+ol, ul {list-style: none; }    
+address, caption, cite, code, dfn, em, strong, th, var { font-weight: normal; font-style: normal;}    
+caption, th {text-align: left;}    
+h1, h2, h3, h4, h5, h6 {font-weight: normal;font-size: 100%;}    
+q:before, q:after {content: '';}    
+abbr, acronym {border: 0;}
+/* 清除浏览器默认样式*/
+*,*:before,*:after{
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+  /*设置该属性表示，不希望任何元素生产的填充或边框影响盒子的大小*/ 
+}
+		#container{
+			width: 300px;
+			height: 20px;
+			border: 1px solid black;
+			-webkit-appearance: none;
+            background-image: linear-gradient(to right,#FF0E00,#EDAC00,#D9FF00,#2DF300,#26C5B6,#0064ED,#7E00FF,#FF00F0,#FF000F);
+            margin: 70px auto;
+            border-radius: 5px;
+            z-index: 1;
+            position: relative;
+		}
+		#container #point{
+			width: 18px;
+			height: 18px;
+			border-radius: 50%;
+			border: 1px solid white;
+			box-shadow: 0 0 10px black;
+			background: transparent;
+			position: absolute;
+			top:0;
+			left:20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="point"></div>
+	</div>
+
+	<script type="text/javascript">
+	window.onload=drag;
+	function getLeft(obj){
+		var l=obj.offsetLeft;
+		while(obj.offsetParent!=null){
+			obj=obj.offsetParent;
+			l+=obj.offsetLeft;
+		}
+		return l;
+	}
+	function getTop(obj){
+		var l=obj.offsetTop;
+		while(obj.offsetParent!=null){
+			obj=obj.offsetParent;
+			l+=obj.offsetTop;
+		}
+		return l;
+	}
+	function drag(){
+		var point=document.getElementById('point');
+		point.onmousedown=fnDown;
+	}
+	function fnDown(event){
+		event=event||window.event;
+		var point=document.getElementById('point'),
+			disX=event.clientX-getLeft(point);
+			console.log(getleft(point));
+			document.onmousemove=function(event){
+				event=event||window.event;
+				fnMove(event,disX);
+			}
+
+	}
+	function fnMove(e,posX){
+		var point=document.getElementById('point'),
+			container=document.getElementById('container'),
+			l=e.clientX-container.offsetLeft-posX,
+			maxL=container.offsetWidth-point.offsetWidth;
+			if(l<0){
+				l=0;
+			}else if(l>maxL){
+				l=maxL;
+			}
+
+			point.style.left=l+'px';
+	}
+	</script>
+</body>
+</html>

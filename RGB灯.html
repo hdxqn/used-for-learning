@@ -4,31 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
   <script src="js/jquery-2.1.3.min.js"></script>
-  <script type="text/javascript">
-  $(document).ready(function(){
-  // var container=document.getElementById("container");
-  //   container.style.height=Math.floor(document.documentElement.clientHeight)+"px";
-  //   // 设置整个container的高度为屏幕实际高度
-  var arr=new Array(17);
-  arr[0]="#FA3B00";arr[1]="#F66200";arr[2]="#EF9800";arr[3]="#EAB600";arr[4]="#E7C600";
-  arr[5]="#E1DD00";arr[6]="#DBF400";arr[7]="#C3FD00";arr[8]="#98FA00";arr[9]="#6DF700";
-  arr[10]="#48F500";arr[11]="#2CED17";arr[12]="#2ADF50";arr[13]="#29D86C";arr[14]="#27CC9A";
-  arr[15]="#24BFB9";arr[16]="#159ACE";arr[17]="#0E89D9";arr[18]="#0570E6";arr[19]="#1057EF";
-  arr[20]="#2B42F3";arr[21]="#3F32F6";arr[22]="#6216FB";arr[23]="#8F00FE";arr[24]="#AA00F9";
-  arr[25]="#CB00F6";arr[26]="#DF00F4";arr[27]="#EF00E9";arr[28]="#FF0092";arr[29]="#FF0066";
-  arr[30]="#FF0025";
-    $(".tj input").bind({mouseup:num,touchend:num});
-    function num(){
-
-    	var i= $(this).val();
-    	if(i<=13){$("#scircle").css("background",arr[0]);}else if (i<=274){
-    		$("#scircle").css("background",arr[Math.floor((i-3)/10)]);
-    	}else if(i>274){
-    		$("#scircle").css("background",arr[30]);
-    	}
-    }
-})
-  </script>
+ 
   <style type="text/css">
  @charset "utf-8";
 /* CSS  */
@@ -118,6 +94,17 @@ html,body{width:100%;height: 100%;}
   border-radius: 50%;
   background: #1DF5ED;
   z-index: 3;
+}
+#container #color-area #scircle2{
+  width: 2em;
+  height: 2em;
+  left: 50%;
+  margin-left: -1em;
+  top:85%;
+  border-radius: 50%;
+  background: rgb(0,0,0);
+  opacity: 0.5;
+  z-index: 4;
 }
 #container #switch{
 	width: 40px;
@@ -213,6 +200,7 @@ input[type=range]::-ms-thumb {
         <span id="stitle">RGB灯</span>
         <span id="mstitle">当前颜色</span>
         <span id="scircle"></span>
+        <span id="scircle2"></span>
     </div>
 
   <!-- 第二行结束 -->
@@ -226,9 +214,44 @@ input[type=range]::-ms-thumb {
   </div>
   <div class="control">
   	<span class="tl">亮度</span>
-  	<span class="tj">白&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="range" id="wb">&nbsp;&nbsp;黑</span>
+  	<span class="tj">白&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="range" name="points" min="0" max="300" id="wb">&nbsp;&nbsp;黑</span>
   </div>
 </div>
+
+
+
+
+ <script type="text/javascript">
+  $(document).ready(function(){
+  // var container=document.getElementById("container");
+  //   container.style.height=Math.floor(document.documentElement.clientHeight)+"px";
+  //   // 设置整个container的高度为屏幕实际高度
+  var arr=new Array(17);
+  arr[0]="rgb(250,59,0)";arr[1]="rgb(246,98,0)";arr[2]="rgb(239,152,0)";arr[3]="rgb(234,182,0)";
+  arr[4]="rgb(231,198,0)";arr[5]="rgb(225,221,0)";arr[6]="rgb(219,244,0)";arr[7]="rgb(195,253,0)";
+  arr[8]="rgb(152,250,0)";arr[9]="rgb(109,247,0)";arr[10]="rgb(72,245,0)";arr[11]="rgb(44,237,23)";arr[12]="rgb(42,223,80)";arr[13]="rgb(41,216,108)";arr[14]="rgb(39,204,154)";
+  arr[15]="rgb(36,191,185)";arr[16]="rgb(21,154,206)";arr[17]="rgb(14,137,217)";arr[18]="rgb(5,112,230)";arr[19]="rgb(16,87,239)";
+  arr[20]="rgb(43,66,243)";arr[21]="rgb(63,50,246)";arr[22]="rgb(98,22,251)";arr[23]="rgb(143,0,254)";arr[24]="rgb(170,0,249)";
+  arr[25]="rgb(203,0,246)";arr[26]="rgb(223,0,244)";arr[27]="rgb(239,0,233)";arr[28]="rgb(255,0,146)";arr[29]="rgb(255,0,102)";                                         
+  arr[30]="rgb(255,0,37)";
+
+    $(".tj input").eq(0).bind({mouseup:num,touchend:num,mousemove:num,touchmove:num});
+    $(".tj input").eq(1).bind({mouseup:opacity,touchend:opacity,mousemove:opacity,touchmove:opacity});
+    function num(){
+
+      var i= $(this).val();
+      if(i<=13){$("#scircle").css("background",arr[0]);}else if (i<=274){
+        $("#scircle").css("background",arr[Math.floor((i-3)/10)]);
+      }else if(i>274){
+        $("#scircle").css("background",arr[30]);
+      }
+    }
+    function opacity(){
+      var i= $(this).val();
+      $("#scircle2").css("opacity",i/300);
+    }
+})
+  </script>
   
 </body>
 </html>

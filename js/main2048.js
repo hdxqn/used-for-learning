@@ -122,7 +122,7 @@ function generateOneNumber(){
 	return true;
 }
 $(document).keydown(function(event){
-	event.preventDefault();
+	//event.preventDefault();
 	//阻止摁键的默认动作，即方向键操作滚动条的动作
 	switch(event.keyCode){
 		case 37://left
