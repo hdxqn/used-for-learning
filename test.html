@@ -25,6 +25,16 @@ abbr, acronym {border: 0;}
   -o-box-sizing:border-box;
   /*设置该属性表示，不希望任何元素生产的填充或边框影响盒子的大小*/ 
 }
+		html{
+			width: 100%;
+			height: 100%;
+			position: relative;
+			background-color: transparent;
+		}
+		body{
+			width: 100%;
+			height: 100%;
+		}
 		#container{
 			width: 300px;
 			height: 20px;
@@ -35,6 +45,7 @@ abbr, acronym {border: 0;}
             border-radius: 5px;
             z-index: 1;
             position: relative;
+            cursor: pointer;
 		}
 		#container #point{
 			width: 18px;
@@ -45,7 +56,30 @@ abbr, acronym {border: 0;}
 			background: transparent;
 			position: absolute;
 			top:0;
-			left:20px;
+			left:0;
+			cursor: pointer;
+		}
+		#canvas{
+			display: block;
+			border: 1px solid black;
+			-webkit-appearance: none;
+            margin: 70px auto;
+            border-radius: 5px;
+            z-index: 1;
+            cursor: pointer;
+		}
+		#point2{
+			width: 19px;
+			height: 19px;
+			border-radius: 50%;
+			border: 1px solid white;
+			box-shadow: 0 0 10px black;
+			background: transparent;
+			position: absolute;
+			top:0;
+			left:0;
+			margin-top: 1px;
+			cursor: pointer;
 		}
 	</style>
 </head>
@@ -54,6 +88,8 @@ abbr, acronym {border: 0;}
 		<div id="point"></div>
 	</div>
 
+	<canvas id="canvas"></canvas>
+	<div id="point2"></div>
 	<script type="text/javascript">
 	window.onload=drag;
 	function getLeft(obj){
@@ -63,6 +99,7 @@ abbr, acronym {border: 0;}
 			l+=obj.offsetLeft;
 		}
 		return l;
+		//得到对象距离窗口左边界的距离
 	}
 	function getTop(obj){
 		var l=obj.offsetTop;
@@ -71,34 +108,138 @@ abbr, acronym {border: 0;}
 			l+=obj.offsetTop;
 		}
 		return l;
+		//得到对象距离窗口上边界的距离
 	}
 	function drag(){
-		var point=document.getElementById('point');
-		point.onmousedown=fnDown;
-	}
-	function fnDown(event){
-		event=event||window.event;
-		var point=document.getElementById('point'),
-			disX=event.clientX-getLeft(point);
-			console.log(getleft(point));
-			document.onmousemove=function(event){
-				event=event||window.event;
-				fnMove(event,disX);
-			}
+		var canvas=document.getElementById('canvas'),
+			point2=document.getElementById('point2'),
+			context=canvas.getContext('2d'),
+			point=document.getElementById('point'),
+			container=document.getElementById('container');
 
+		init(canvas,point2,context);
+		point.onmousedown=fnDown(point,container);
+		container.onclick=fnClick(point,container);
+		point2.onmousedown=cnDown(point2,canvas,context);
+		canvas.onclick=cnClick(point2,canvas,context);
 	}
-	function fnMove(e,posX){
-		var point=document.getElementById('point'),
-			container=document.getElementById('container'),
-			l=e.clientX-container.offsetLeft-posX,
-			maxL=container.offsetWidth-point.offsetWidth;
+	function fnDown(obj1,obj2){
+		return function(event){
+			var event=event||window.event,
+			disX=event.clientX-getLeft(obj1);
+			document.onmousemove=function(event){
+				var event=event||window.event;
+				fnMove(event,disX,obj1,obj2);
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+			}
+		}
+		//采用闭包的方式传入鼠标事件
+		//obj1是滑块，obj2是滑动的容器
+	}
+	function fnMove(e,posX,obj1,obj2){
+		var l=e.clientX-obj2.offsetLeft-posX,
+			maxL=obj2.offsetWidth-obj1.offsetWidth;
 			if(l<0){
 				l=0;
 			}else if(l>maxL){
 				l=maxL;
 			}
 
-			point.style.left=l+'px';
+			obj1.style.left=l+'px';
+	}
+	function fnClick(obj1,obj2){
+		return function(event){
+			var event=event||window.event,
+				l=event.clientX-getLeft(obj2)-(obj1.offsetWidth/2),
+				maxL=obj2.offsetWidth-obj1.offsetWidth;
+				if(l>maxL){
+					l=maxL;
+				}else if(l<0){
+					l=0;
+				}
+				obj1.style.left=l+'px';
+		}
+	}
+//点击拖动功能结束
+	function init(ag1,ag2,ag3){
+			ag1.width=300;
+			ag1.height=20;
+
+		var linearGrad=ag3.createLinearGradient(0,0,300,0);
+			linearGrad.addColorStop(0.0,'rgb(222,18,15)');
+			linearGrad.addColorStop(0.1,'rgb(255,94,0)');
+			linearGrad.addColorStop(0.2,'rgb(237,214,0)');
+			linearGrad.addColorStop(0.3,'rgb(154,237,0)');
+			linearGrad.addColorStop(0.4,'rgb(0,237,38)');
+			linearGrad.addColorStop(0.5,'rgb(4,246,210)');
+			linearGrad.addColorStop(0.6,'rgb(0,132,255)');
+			linearGrad.addColorStop(0.7,'rgb(28,0,255)');
+			linearGrad.addColorStop(0.8,'rgb(192,0,237)');
+			linearGrad.addColorStop(0.9,'rgb(255,0,244)');
+			linearGrad.addColorStop(1.0,'rgb(255,0,32)');
+			ag3.fillStyle=linearGrad;
+			ag3.fillRect(0,0,300,20);
+
+			var l=getLeft(ag1),
+				t=getTop(ag1);
+			ag2.style.left=l+'px';
+			ag2.style.top=t+'px';
+	//画布以及滑块的初始化,ag1是canvas元素，ag2是滑块point2，ag3是canvas元素的上下文绘图环境context
+	}
+
+	function cnDown(obj1,obj2,obj3){
+		return function(event){
+			var event=event||window.event,
+			disX=event.clientX-getLeft(obj1);
+			document.onmousemove=function(event){
+				var event=event||window.event;
+				cnMove(event,disX,obj1,obj2,obj3);
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+			}
+		}
+		//采用闭包的方式传入鼠标事件
+		//obj1是滑块point2,obj2是元素canvas,obj3是绘图上下文
+	}
+
+	function cnMove(e,posX,obj1,obj2,obj3){
+		var l=e.clientX-posX,
+			maxL=getLeft(obj2)+obj2.offsetWidth-obj1.offsetWidth,
+			minL=getLeft(obj2);
+			if(l<minL){
+				l=minL;
+			}else if(l>maxL){
+				l=maxL;
+			}
+
+			obj1.style.left=l+'px';
+			//e是鼠标移动事件，posX是鼠标点击在滑块中的位置，
+			//obj1是滑块point2,obj2是元素canvas,obj3是绘图上下文
+			setColor();
+	}
+	function cnClick(obj1,obj2,obj3){
+		return function(event){
+			var event=event||window.event,
+				l=event.clientX-(obj1.offsetWidth/2),
+				maxL=getLeft(obj2)+obj2.offsetWidth-obj1.offsetWidth,
+				minL=getLeft(obj2);
+				if(l>maxL){
+					l=maxL;
+				}else if(l<minL){
+					l=minL;
+				}
+				obj1.style.left=l+'px';
+			//obj1是滑块point2,obj2是元素canvas,obj3是绘图上下文
+		}
+	}
+
+	function getColor(){
+
 	}
 	</script>
 </body>
