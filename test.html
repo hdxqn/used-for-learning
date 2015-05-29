@@ -220,7 +220,7 @@ abbr, acronym {border: 0;}
 			obj1.style.left=l+'px';
 			//e是鼠标移动事件，posX是鼠标点击在滑块中的位置，
 			//obj1是滑块point2,obj2是元素canvas,obj3是绘图上下文
-			setColor();
+			setColor(obj1,obj2,obj3);
 	}
 	function cnClick(obj1,obj2,obj3){
 		return function(event){
@@ -234,12 +234,20 @@ abbr, acronym {border: 0;}
 					l=minL;
 				}
 				obj1.style.left=l+'px';
+				setColor(obj1,obj2,obj3);
 			//obj1是滑块point2,obj2是元素canvas,obj3是绘图上下文
 		}
 	}
 
-	function getColor(){
+	function setColor(ag1,ag2,ag3){
+		var colors=ag3.getImageData(0,0,300,20),
+			l=Math.floor(getLeft(ag1)-getLeft(ag2)+(ag1.offsetWidth/2)),
+			r=colors.data[4*l-4],
+			g=colors.data[4*l-3],
+			b=colors.data[4*l-2];
 
+			document.getElementsByTagName('html')[0].style.background='rgb('+r+','+g+','+b+')';
+		console.log(r+','+g+','+b);
 	}
 	</script>
 </body>
