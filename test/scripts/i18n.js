@@ -2290,7 +2290,7 @@
         t && t.resize()
     }, e.modal.isActive = function() {
         return t ? !0 : !1
-    }, e.modal.defaults = {overlay: "#000",opacity: .75,zIndex: 1,escapeClose: !0,clickClose: !0,closeText: "Close",closeClass: "",modalClass: "modal",spinnerHtml: null,showSpinner: !0,showClose: !0,fadeDuration: null,fadeDelay: 1}, e.modal.BEFORE_BLOCK = "modal:before-block", e.modal.BLOCK = "modal:block", e.modal.BEFORE_OPEN = "modal:before-open", e.modal.OPEN = "modal:open", e.modal.BEFORE_CLOSE = "modal:before-close", e.modal.CLOSE = "modal:close", e.modal.AJAX_SEND = "modal:ajax:send", e.modal.AJAX_SUCCESS = "modal:ajax:success", e.modal.AJAX_FAIL = "modal:ajax:fail", e.modal.AJAX_COMPLETE = "modal:ajax:complete", e.fn.modal = function(n) {
+    }, e.modal.defaults = {overlay: "#000",opacity: .6,zIndex: 1,escapeClose: !0,clickClose: !0,closeText: "Close",closeClass: "",modalClass: "modal",spinnerHtml: null,showSpinner: !0,showClose: !0,fadeDuration: null,fadeDelay: 1}, e.modal.BEFORE_BLOCK = "modal:before-block", e.modal.BLOCK = "modal:block", e.modal.BEFORE_OPEN = "modal:before-open", e.modal.OPEN = "modal:open", e.modal.BEFORE_CLOSE = "modal:before-close", e.modal.CLOSE = "modal:close", e.modal.AJAX_SEND = "modal:ajax:send", e.modal.AJAX_SUCCESS = "modal:ajax:success", e.modal.AJAX_FAIL = "modal:ajax:fail", e.modal.AJAX_COMPLETE = "modal:ajax:complete", e.fn.modal = function(n) {
         return 1 === this.length && (t = new e.modal(this, n)), this
     }, e(document).on("click.modal", 'a[rel="modal:close"]', e.modal.close), e(document).on("click.modal", 'a[rel="modal:open"]', function(t) {
         t.preventDefault(), e(this).modal()

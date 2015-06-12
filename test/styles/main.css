@@ -29,5 +29,56 @@ abbr, acronym {border: 0;}
   user-select:none;
   -webkit-tap-highlight-color:transparent;
 }
+html{
+  background: linear-gradient(#605DA1,#66ADC0);
+  height: 100%;
+}
+body{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  margin:0;
+  color:#fff;
+  text-shadow:1px 1px 0 rgba(0,0,0,.2);
+  word-wrap:break-word;
+  
+}
 
+.popup{
+  width:100%;
+  padding:10px 0 20px;
+}
+.seprator{
+  margin:0;
+  border-width:1px 0 0 0;
+}
+.panel{
+  background-color:rgba(0,0,0,.1);
+  border-radius:5px;
+  width:90%;
+  height:125px;
+  margin:auto;
+  position:relative;
+}
+.fill{
+  width:100%;
+  height:100%;
+}
+.supper-center{
+  display:-webkit-flex;
+  display:flex;
+  vertical-align:baseline;
+  text-align:center;
+}
+.supper-center div,
+.supper-center span,
+.supper-center img{
+  margin:auto; 
+}
+.modal{
+  background:0 0;
+  -webkit-box-shadow: 0 0 10px #000;
+-moz-box-shadow: 0 0 10px #000;
+-o-box-shadow: 0 0 10px #000;
+-ms-box-shadow: 0 0 10px #000;
+box-shadow: 0 0 10px #000;
+}
 

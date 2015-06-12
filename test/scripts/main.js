@@ -17,6 +17,10 @@ $(document).ready(function(){
         }
     });
     $('body').click(init);
+    $('#modal').click(function(){
+        $.modal.close();
+    });
+    $("#modal").modal({escapeClose: !1,clickClose: !1,showClose: !1});
 
 
 });
