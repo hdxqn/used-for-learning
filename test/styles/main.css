@@ -1,0 +1,33 @@
+ @charset "utf-8";
+/* CSS  */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6,pre, form, fieldset, input, textarea, p, blockquote, th, td {padding: 0; margin: 0;}    
+fieldset, img { border: 0; }    
+table {border-collapse: collapse;  border-spacing: 0;}    
+ol, ul {list-style: none; }    
+address, caption, cite, code, dfn, em, strong, th, var { font-weight: normal; font-style: normal;}    
+caption, th {text-align: left;}    
+h1, h2, h3, h4, h5, h6 {font-weight: normal;font-size: 100%;}    
+q:before, q:after {content: '';}    
+abbr, acronym {border: 0;}
+/* 清除浏览器默认样式*/
+*,*:before,*:after{
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+  /*设置该属性表示，不希望任何元素生产的填充或边框影响盒子的大小*/ 
+/* -webkit-touch-callout:none;
+ -webkit-tap-highlight-color: transparent;
+ -webkit-user-select: none;
+ 以上设置用于手机端防止长按选中等问题*/
+  cursor: pointer;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+
+
