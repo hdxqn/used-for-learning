@@ -10,11 +10,6 @@ $(document).ready(function(){
         $(document).i18n();
         console.log(t("text"));
         console.debug(window.navigator.language);
-        explain=function(){
-        	console.debug(t("number"));
-        	var lang=getUrlParam('lang');
-        	console.debug(lang);
-        }
     });
     $('body').click(init);
     $('#modal').click(function(){
@@ -25,8 +20,8 @@ $(document).ready(function(){
 
 });
 function init(){
-	 explain('number');
-	 console.debug('i am clicked!');
+	 console.debug('i am clicked!'+i18n.t('text'));
+     //在外部使用多语言的方法
 }
 function browserRedirect(obj) {
     var sUserAgent = navigator.userAgent.toLowerCase();
@@ -57,5 +52,6 @@ function getUrlParam(e) {
         n = window.location.search.substr(1).match(t);
     return null != n ? unescape(n[2]) : null
 }
+
 
 

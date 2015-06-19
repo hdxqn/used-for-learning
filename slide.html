@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>带预览图的幻灯片</title>
+		<style type="text/css">
+
+html,body{
+	margin: 0;
+	padding: 0;
+}
+body{
+	padding: 50px 0;
+	background-color: #FFF;
+	font-size: 14px;
+	font-family: "Avenir Next";
+	color: #555;
+	-webkit-font-smoothing:antialiased;
+	/*字体抗锯齿*/
+}
+
+.slider,
+.slider .main,
+.slider .main .main-i{
+	width: 100%;
+	height: 400px;
+	position: relative;
+}
+.slider .main{
+	overflow: hidden;
+}
+
+.slider .main .main-i img{
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	z-index: 1;
+}
+.slider .main .main-i .caption{
+	position: absolute;
+	right: 50%;
+	top: 30%;
+	z-index: 9;
+	margin: 0 13% 0 0;
+}
+.slider .main .main-i .caption h2{
+	font-size: 40px;
+	line-height: 50px;
+	color: #B5B5B5;
+	text-align: right;
+}
+.slider .main .main-i .caption h3{
+	font-size: 70px;
+	line-height: 70px;
+	color: #000000;
+	text-align: right;
+	font-family: 'Open Sans Condensed';
+}
+.slider .ctrl{
+	width: 100%;
+	height: 13px;
+	line-height: 13px;
+	text-align: center;
+	position: absolute;
+	left: 0;
+	bottom: -13px;
+}
+.slider .ctrl .ctrl-i{
+	display: inline-block;
+	width: 150px;
+	height: 13px;
+	background-color: #666;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+	margin: 0 0 0 1px;
+	position: relative;
+	z-index: 4;
+}
+.slider .ctrl .ctrl-i img{
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 50px;
+	z-index: 1;
+	opacity: 0;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.slider .ctrl .ctrl-i:hover{
+	background-color: #F0F0F0;
+}
+.slider .ctrl .ctrl-i:hover img{
+	bottom: 13px;
+	box-reflect:below 0px -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		from(transparent),
+		color-stop(50%,transparent),
+		to(rgba(255,255,255,0.3))
+		);
+	-webkit-box-reflect:below 0px -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		from(transparent),
+		color-stop(50%,transparent),
+		to(rgba(255,255,255,0.3))
+		);
+	opacity: 1;
+}
+.slider .ctrl .ctrl-i-active,
+.slider .ctrl .ctrl-i-active:hover{
+	background-color: #000;
+}
+.slider .ctrl .ctrl-i-active:hover img{
+	opacity: 0;
+}
+.slider .main .main-i{
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	right: 50%;
+	z-index: 2;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+.slider .main .main-i-right{
+	right: -50%;
+}
+.slider .main .main-i h2{
+	margin: 0 45px 0 0;
+	opacity: 0;
+	-webkit-transition: all 1s 0.8s;
+	-o-transition: all 1s 0.8s;
+	transition: all 1s 0.8s;
+}
+.slider .main .main-i h3{
+	margin:0 -45px 0 0;
+	opacity: 0;
+	-webkit-transition: all 1s 0.8s;
+	-o-transition: all 1s 0.8s;
+	transition: all 1s 0.8s;
+}
+#main-background,
+.slider .main .main-i-active{
+	opacity: 1;
+	right: 0;
+}
+#main-background{
+	z-index: 1;
+}
+.slider .main .main-i-active h2,
+.slider .main .main-i-active h3{
+	margin: 0 0 0 0;
+	opacity: 1;
+}
+
+</style>
+</head>
+<body>
+
+<div class="slider">
+	
+	<div class="main" id="template-main">
+		<div class="main-i {{css}}" id="main{{index}}">
+			<div class="caption">
+				<h2>{{h2}}</h2>
+				<h3>{{h3}}</h3>
+			</div>
+			<img src="img/{{index}}.jpg" alt="" onload="movePictures(this)" class="picture">
+		</div>
+		
+
+	</div>
+
+		
+
+
+
+	<div class="ctrl" id="template-ctrl">
+		<a href="javascript:switchSlider({{index}});"  class="ctrl-i" id="ctrl{{index}}">
+			<img src="img/{{index}}.jpg" alt="">
+		</a>
+	</div>
+
+
+
+</div>
+	
+
+
+<script type="text/javascript">
+	//1.数据定义
+	var data=[
+	{img:8,h2:'Creative',h3:'DUET'},
+	{img:9,h2:'Friendly',h3:'DEVIL'},
+	{img:10,h2:'Tranquilent',h3:'COMPATRIORT'},
+	{img:11,h2:'Insecure',h3:'HUSSLER'},
+	{img:12,h2:'Loving',h3:'REBEL'},
+	{img:13,h2:'Passionate',h3:'SEEKER'},
+	{img:14,h2:'Crazy',h3:'FRIEND'}
+	];
+
+	//2.定义通用函数
+	var g=function(id){
+		if(id.substr(0,1)=='.'){
+			return document.getElementsByClassName(id.substr(1));
+		}
+		return document.getElementById(id);
+	};
+	//3.添加幻灯片以及它对应的按钮
+	function addSliders(){
+		//3.1获取模版
+		var tpl_main=g('template-main').innerHTML
+			.replace(/^\s*/,'')
+			.replace(/\s*$/,''),
+			tpl_ctrl=g('template-ctrl').innerHTML
+			.replace(/^\s*/,'')
+			.replace(/\s*$/,''),
+		//3.2定义最终输出 HTML的变量
+			out_main=[],
+			out_ctrl=[];
+		//3.3遍历所有数据，构建	最终输出的HTML
+		for(var i=0;i<data.length;i++){
+			var _html_main=tpl_main.replace(/{{index}}/g,data[i].img)
+								   .replace(/{{h2}}/g,data[i].h2)
+								   .replace(/{{h3}}/g,data[i].h3)
+								   .replace(/{{css}}/g,['','main-i-right'][i%2]),
+				_html_ctrl=tpl_ctrl.replace(/{{index}}/g,data[i].img);
+				out_main.push(_html_main);
+				out_ctrl.push(_html_ctrl);
+		}
+		//3.4把html回写到对应的DOM里面
+		g('template-main').innerHTML=out_main.join('');
+		g('template-ctrl').innerHTML=out_ctrl.join('');
+		//7.增加#main background
+		g('template-main').innerHTML +=tpl_main.replace(/{{index}}/g,'{{index}}')
+											   .replace(/{{h2}}/g,data[0].h2)
+								   			   .replace(/{{h3}}/g,data[0].h3);				   
+		g('main{{index}}').id='main-background';
+		g('main-background').innerHTML=g('main-background').innerHTML.replace('{{index}}',data[0].img);
+
+	}
+	//5.幻灯片切换
+	function switchSlider(n){
+		//5.1获得要展现的幻灯片以及它对应deep按钮 DOM
+		var main=g('main'+n),
+			ctrl=g('ctrl'+n),
+			clear_main=g('.main-i'),
+			clear_ctrl=g('.ctrl-i');
+		//5.2清除所有active样式
+		for( var i=0;i<clear_ctrl.length;i++){
+			clear_main[i].className=clear_main[i].className.replace(' main-i-active','');
+			clear_ctrl[i].className=clear_ctrl[i].className.replace(' ctrl-i-active','');
+		}	
+		//5.3为当前幻灯片和控制按钮添加样式
+			main.className +=" main-i-active";
+			ctrl.className +=" ctrl-i-active";
+		//7.2切换幻灯片时，将上一张幻灯片的图片复制到 #main-background中
+		setTimeout(function(){
+			g('main-background').innerHTML=main.innerHTML;
+		},900);
+		
+	}
+	//6.动态调整图片的margin-top以使得图片垂直居中
+	function movePictures(ts){
+			ts.style.margin='-'+ts.clientHeight/2+'px 0 0 0';
+			//onload黑科技，给图片标签上加上 onload=function(this){加载完毕后的操作}
+	}
+	//4.定义何时输出幻灯片
+	window.onload= function(){
+		addSliders();
+		switchSlider(8);	
+	}
+</script>
+</body>
+</html>
