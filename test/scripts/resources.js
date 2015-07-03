@@ -1,8 +1,8 @@
 var resources={
 	"ch":{
 		"translation":{
-			"text":"测试文本",
-			"number":"测试数字"
+			"text":"测试 文本",
+			"number":"测 试数字"
 		}
 	},
 	"en":{

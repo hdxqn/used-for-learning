@@ -3,7 +3,7 @@ $(document).ready(function(){
 	touchEvents={};
 	browserRedirect(touchEvents);
 	i18n.init({
-        "lng": 'en',
+        "lng": 'ch',
         "resStore": resources,
         "fallbackLng" : 'en'
     }, function (t) {
