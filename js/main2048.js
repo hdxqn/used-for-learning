@@ -173,6 +173,7 @@ document.addEventListener("touchmove",function(event){
 });
 
 document.addEventListener("touchend",function(event){
+	//JQ对象的touch事件获取坐标，event.originalEvent.changedTouches[0].clientX
 	endx=event.changedTouches[0].pageX;
 	endy=event.changedTouches[0].pageY;
 

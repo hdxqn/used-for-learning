@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>反面效果</title>
+
+<style type="text/css">
+
+*,*:before,*:after{
+   -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.flip-container {
+	display: none;
+	perspective: 1000;
+}
+	/* flip the pane when hovered */
+	.flip-container:hover .flipper{
+		transform: rotateY(180deg);
+	}
+
+.flip-container, .front, .back {
+	width: 320px;
+	height: 480px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	width: 320px;
+	height: 480px;
+	position: absolute;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+/*<!-- 纯css翻面效果，有兼容性问题 -->*/
+
+
+
+.test{
+	display: none;
+	position: absolute;
+	width: 400px;
+	height: 400px;
+	top: 50%;
+	left: 50%;
+	margin: -200px 0 0 -200px;
+}
+.test .f,
+.test .b{
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	-webkit-transition:all 0.225s;
+	-o-transition:all 0.225s;
+	transition:all 0.225s;
+	-moz-transition:all 0.225s;
+}
+.out{
+	transform:rotate3d(0,1,0,90deg);
+	-webkit-transform:rotate3d(0,1,0,90deg);
+	-moz-transform:rotate3d(0,1,0,90deg);
+    -ms-transform:rotate3d(0,1,0,90deg);
+	-o-transform:rotate3d(0,1,0,90deg); 
+}
+.in{
+	transform:rotate3d(0,1,0,0);
+	-webkit-transform:rotate3d(0,1,0,0);
+	-moz-transform:rotate3d(0,1,0,0);
+    -ms-transform:rotate3d(0,1,0,0);
+	-o-transform:rotate3d(0,1,0,0); 
+}
+/*利用JS实现的点击后反面效果，没有兼容性问题*/
+.slide{
+	width: 600px;
+	height: 400px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -200px 0 0 -300px;
+}
+.slide .slide_0{
+	position: absolute;
+	height: 100%;
+	width: 25%;
+	border: 1px solid red;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	background: url(img/num.png) top center repeat-y;
+}
+.slide #slide1{
+	top: 0;
+	left: 0;
+}
+.slide #slide2{
+	top: 0;
+	left: 25%;
+}
+.slide #slide3{
+	top: 0;
+	left: 50%;
+}
+.slide #slide4{
+	top: 0;
+	left: 75%;
+}
+
+
+
+	/*图片滑动效果*/
+
+.slide2{
+	width: 200px;
+	height: 400px;
+	position: relative;
+	margin: 40px auto;
+}
+.slide2 .numContainer{
+	list-style: none;
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: blue;
+}
+.slide2 .numContainer .num{
+	margin: 0;
+	padding: 0;
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 50%;
+	color: #fff;
+	font-size: 32px;
+	line-height: 200px;
+	text-align: center;
+	font-weight: bold;
+	-webkit-transition: top 0.4s;
+	-o-transition: top 0.4s;
+	-moz-transition: top 0.4s;
+	transition: top 0.4s;
+}
+.slide2 .numContainer .show{
+	top: 100px;
+}
+.slide2 .numContainer .up{
+	top: 0;
+}
+.slide2 .numContainer .down{
+	top: 200px;
+}
+.slide2 .numContainer .hidedown{
+	top: 400px;
+	z-index: -99;
+}
+.slide2 .numContainer .hideup{
+	top: -200px;
+	z-index: -99;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+			<!-- 前面内容 -->
+			<img src="img/0.jpg" alt="">
+		</div>
+		<div class="back">
+			<!-- 背面内容 -->
+			<img src="img/1.jpg" alt="">
+		</div>
+	</div>
+</div>
+<!-- 纯css翻面效果，有兼容性问题 -->
+
+<div class="test">
+	<img src="img/0.jpg" alt="" class="f choose">
+	<img src="img/1.jpg" alt="" class="b choose out">
+</div>
+<!-- 利用JS实现的点击后反面效果，没有兼容性问题 -->
+
+
+<!-- <div class="slide">
+	<div id="slide1" class="slide_0"></div>
+	<div id="slide2" class="slide_0"></div>
+	<div id="slide3" class="slide_0"></div>
+	<div id="slide4" class="slide_0"></div>
+</div> -->
+
+
+<!-- 图片滑动效果 -->
+
+<div class="slide2">
+	<ul class="numContainer">
+		<li class="num up" id="num1" data=23>23</li>
+		<li class="num show" id="num2" data=0>00</li>
+		<li class="num down" id="num3" data=1>01</li>
+		<li class="num hidedown" id="num4" data=2>02</li>
+	</ul>
+</div>
+
+<script src="jquery-2.1.3.min.js"></script>
+<script text="text/javascript">
+// 	var elef=null,
+// 		eleb=null,
+// 		startTime=new Date(),
+// 		startY=null;
+// 	function backOrFont() {
+// 		$('.choose').each(function(){
+// 		  if ($(this).hasClass("out")) {
+//             eleb = $(this);
+//         } else {
+//             elef = $(this);
+//         }
+//     });
+// 	}
+// 	backOrFont();
+// 	$(".test").bind("click", function() {
+//     // 切换的顺序如下
+//     // 1. 当前在前显示的元素翻转90度隐藏, 动画时间225毫秒
+//     // 2. 结束后，之前显示在后面的元素逆向90度翻转显示在前
+//     // 3. 完成翻面效果
+//     $(elef).addClass("out").removeClass("in");
+//     setTimeout(function() {
+//         $(eleb).addClass("in").removeClass("out");
+//         // 重新确定正反元素
+//         backOrFont();
+//     }, 225);
+//     return false;
+// });
+
+// $('.slide_0').bind('mousedown',slideStart);
+// $('.slide_0').bind('mouseup',slideEnd);
+
+// function slideStart(event){
+// 	event=event||window.event;
+// 	$(this).bind('mousemove',slideGoing);
+// 	startY=event.pageY;
+// }
+// function slideGoing(event){
+	
+// 	event=event||window.event;
+// 	var delta=event.pageY-startY,
+// 		endTime=new Date(),
+// 		time=endTime-startTime;
+// 		console.log(delta);
+// 		if(time<500||delta<30){
+// 			return;
+// 		}else if(time>500&&Math.abs(delta)>30){
+// 			// $(this).css('backgroundPositionY')
+// 			$(this).animate({
+// 				backgroundPositionY:Math.abs(delta)*20
+// 			},500);
+// 			startY=event.pageY;
+// 			startTime=new Date();
+// 		}
+// }
+
+// function slideEnd(event){
+// 	$(this).unbind('mousemove',slideGoing);
+// }
+
+$('.numContainer').click(timerSlide);
+
+
+function timerSlide(event){
+	event=event||window.event;
+	var delta=event.clientY-$('.numContainer').offset().top;
+	
+	if(delta<200){
+		goUp();
+	}else if(delta>=200){
+		goDown();
+	}
+}
+
+function goDown(){
+	var eles=$('.numContainer').find('.num');
+	var num=null;
+	eles.each(function(){
+		if($(this).hasClass('show')){
+		num=$(this).attr('data');
+		num-=0;
+		}
+	});
+	for(var i=0;i<eles.length;i++){
+		if($(eles[i]).hasClass('show')){
+			$(eles[i]).addClass('down').removeClass('show');
+		}else if($(eles[i]).hasClass('up')){
+			$(eles[i]).removeClass('up').addClass('show');
+		}else if($(eles[i]).hasClass('down')){
+			$(eles[i]).removeClass('down').addClass('hideup');
+		}else{
+			var str=null;
+			if(num<2){
+				num+=22;
+				str=num+'';
+			}else if(num>=2&&num<12){
+				num-=2;
+				str = '0'+num;
+					
+			}else if(num>=12){
+				num-=2;
+				str=num;
+			}
+			$(eles[i]).text(str);
+			$(eles[i]).removeClass('hidedown hideup').addClass('up').attr('data',num);
+		}
+	}
+}
+
+function goUp(){
+	var eles=$('.numContainer').find('.num');
+	var num=null;
+	eles.each(function(){
+		if($(this).hasClass('show')){
+		num=$(this).attr('data');
+		num-=0;
+		}
+	});
+	for(var i=0;i<eles.length;i++){
+		if($(eles[i]).hasClass('show')){
+			$(eles[i]).addClass('up').removeClass('show');
+		}else if($(eles[i]).hasClass('up')){
+			$(eles[i]).removeClass('up').addClass('hidedown');
+		}else if($(eles[i]).hasClass('down')){
+			$(eles[i]).removeClass('down').addClass('show');
+		}else{
+			var str=null;
+			if(num>21){
+				num-=22;
+				str='0'+num;
+			}else if(num<8){
+				num+=2;
+		 		str = '0'+num;	
+			}else if(num>=8&&num<=21){
+				num+=2;
+				str=num+'';
+			}
+			$(eles[i]).text(str);
+			$(eles[i]).removeClass('hidedown hideup').addClass('down').attr('data',num);
+		}
+	}
+}
+
+
+
+
+</script>
+</body>
+</html>
