@@ -137,6 +137,7 @@
 	/*图片滑动效果*/
 
 .slide2{
+	display: none;
 	width: 200px;
 	height: 400px;
 	position: relative;
@@ -188,6 +189,14 @@
 }
 
 
+.fixed{
+	position: fixed;
+	width: 40px;
+	height: 40px;
+	margin: 60px auto 60px auto;
+	background-color: red;
+}
+
 </style>
 </head>
 <body>
@@ -230,6 +239,11 @@
 		<li class="num down" id="num3" data=1>01</li>
 		<li class="num hidedown" id="num4" data=2>02</li>
 	</ul>
+</div>
+
+
+<div class="fixed">
+	
 </div>
 
 <script src="jquery-2.1.3.min.js"></script>

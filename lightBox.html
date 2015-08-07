@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片画廊</title>
+</head>
+<style type="text/css">
+	body{
+		margin: 0;
+		padding: 0;
+	}
+	#G_lightbox_mask{
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	/*	background-color: #000;*/
+		opacity: 0.5;
+		z-index: 999;
+	}
+	#G_lightbox_popup{
+		position: fixed;
+		left: 50%;
+		top: 50px;
+		width: 400px;
+		background-color: #9C0;
+		z-index: 1000;
+		margin: 0 0 0 -200px;
+	}
+	#G_lightbox_popup .lightbox_pic_view{
+		position: relative;
+		border: 5px solid #fff;
+		border-radius: 3px;
+		background: url(img/loading.gif) no-repeat center center;
+		overflow: hidden;
+	}
+	#G_lightbox_popup .lightbox_pic_view .lightbox_btn{
+		position: absolute;
+		top: 0;
+		width: 40%;
+		height: 100%;
+		z-index: 1;
+		cursor: pointer;
+	}
+	#G_lightbox_popup .lightbox_pic_view .lightbox_prev_btn{
+		left: 0;
+	}
+	#G_lightbox_popup .lightbox_pic_view .lightbox_next_btn{
+		right: 0;
+	}
+	#G_lightbox_popup .lightbox_pic_view .lightbox_prev_btn-show{
+		background:url(img/prev.png) no-repeat left center;
+	}
+	#G_lightbox_popup .lightbox_pic_view .lightbox_next_btn-show{
+		background:url(img/next.png) no-repeat right center;
+	}
+	#G_lightbox_popup .lightbox_pic_view .lightbox_img{
+		display: block;
+		position: relative;
+		width: 100%;
+	}
+	#G_lightbox_popup .lightbox_pic_caption{
+		position: relative;
+		margin: -60px 5px 0 5px;
+	}
+	#G_lightbox_popup .lightbox_pic_caption .lightbox_caption_area{
+		padding: 10px 5px 10px 5px;
+		color: #fff;
+	}
+	#G_lightbox_popup .lightbox_pic_caption .lightbox_caption_area .lightbox_of_index{
+		color: #999;
+	}
+	#G_lightbox_popup .lightbox_pic_caption .lightbox_close_btn{
+		position: absolute;
+		width: 27px;
+		height: 27px;
+		right: 10px;
+		top: 13px;
+		background:url(img/close.png) no-repeat center center;
+	}
+</style>
+<body>
+<h1>一组图片</h1>
+<div>
+	<img class="js_lightbox" src="img/1.jpg" alt="" width="100" height="100" 
+	data-source="img/1.jpg"
+	data-group="group-1"
+	data-id="aaaaaa"
+	data-caption="sdadasrt">
+	<img class="js_lightbox" src="img/2.jpg" alt="" width="100" height="100" 
+	data-source="img/2.jpg"
+	data-group="group-1"
+	data-id="aaaaaa"
+	data-caption="sdadasrt">
+	<img class="js_lightbox" src="img/3.jpg" alt="" width="100" height="100" 
+	data-source="img/3.jpg"
+	data-group="group-1"
+	data-id="aaaaaa"
+	data-caption="sdadasrt">
+</div>
+
+
+<!-- <div id="G_lightbox_mask"></div>
+
+<div id="G_lightbox_popup">
+
+	<div class="lightbox_pic_view">
+		<span class="lightbox_btn lightbox_prev_btn lightbox_prev_btn-show"></span>
+		<img class="lightbox_img" src="img/0.jpg" alt="">
+		<span class="lightbox_btn lightbox_next_btn lightbox_next_btn-show"></span>
+	</div>
+
+	<div class="lightbox_pic_caption">
+		<div class="lightbox_caption_area">
+			<p class="lightbox_pic_desc">图片标题</p>
+			<span class="lightbox_of_index">当前索引：1 of 4</span>
+		</div>
+		<span class="lightbox_close_btn"></span>
+	</div>
+
+</div> -->
+<script src="jquery-2.1.3.min.js"></script>
+<script type="text/javascript">
+	$(function($){
+		//var lightbox = new LightBox();
+	});
+	(function(){
+		var LightBox=function(){
+			var self=this;
+			this.popupMask=$('<div id="G_lightbox_mask">');
+			this.popupWin=$('<div id="G_lightbox_popup">');
+			this.bodyNode=$(document.body);
+			this.renderDom();
+		};
+		LightBox.prototype={
+			renderDom:function(){
+				var strDom='<div class="lightbox_pic_view"><span class="lightbox_btn lightbox_prev_btn"></span><img class="lightbox_img" src="" alt=""><span class="lightbox_btn lightbox_next_btn"></span></div><div class="lightbox_pic_caption"><div class="lightbox_caption_area"><p class="lightbox_pic_desc"></p><span class="lightbox_of_index">当前索引：0 of 0</span></div><span class="lightbox_close_btn"></span></div>';
+				this.popupWin.html(strDom);
+				this.bodyNode.append(this.popupMask,this.popupWin);
+			},
+		};
+		window["LightBox"]=LightBox;
+	})(jQuery);
+</script>	
+</body>
+</html>

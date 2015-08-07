@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>触发BFC模式</title>
+
+	<style type="text/css">
+		*{
+  padding: 0;
+  margin: 0;
+}
+.msn-item{
+  padding: 15px;
+  position: relative;
+}
+.msn-head{
+  overflow: hidden;/*为了圆角*/
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+.msn-head img{
+  display: block;
+  width: 100%;
+}
+.msn-item_other .msn-head{
+  float: left; /* 敌人头像靠左 */
+  margin-right: 15px;
+}
+.msn-item_me .msn-head{
+  float: right; /* 我军头像靠右 */
+  margin-left: 15px;
+}
+.msn-content{
+  overflow:hidden; /* 触发BFC */
+  word-wrap: break-word; 
+  word-break: normal; 
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* 用颜色区分敌我 */
+.msn-item_other .msn-content{
+  background: #ddd;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+.msn-item_me .msn-content{
+  background: #73bb49;
+  box-shadow: -1px 1px 3px rgba(0,0,0,0.5);
+}
+/* 加气泡尖角，注：因.msn-head和.msn-content都有overflow:hidden样式，所以加到.msn-item上 */
+.msn-item_other:before,
+.msn-item_me:after{
+  content:'';
+  position:absolute;
+  top: 35px;
+  z-index: 10;
+  border: solid transparent;
+  border-width: 8px 10px;
+}
+.msn-item_other:before{
+  left:70px;
+  border-right-color: #ddd;
+}
+.msn-item_me:after{
+  right: 70px;
+  border-left-color: #73bb49;
+}
+
+
+.item-head,.item-tail{
+  height: 50px;
+  
+  line-height: 50px;
+  text-align: center;
+}
+.item-head{
+  float: left;
+  width: 60px;/* 你可以删除width看看效果 */
+  background:#E99528;
+}
+.item-tail{
+  float: right;
+  width: 100px;/* 你可以删除width看看效果 */
+  background:#317F97;
+}
+.item-content{
+  overflow: hidden; /* 触发BFC */
+  height: 50px;
+  
+  white-space:nowrap; 
+  text-overflow:ellipsis; 
+  -o-text-overflow:ellipsis; 
+  
+  line-height: 50px;
+  background: #73AA47;
+}
+
+
+
+	</style>
+</head>
+<body>
+<div class="msn-item msn-item_other">
+  	<div class="msn-head">
+  		<img src="img/0.jpg" alt="">
+  	</div>
+  <p class="msn-content">
+    花开花落，
+    我都不忍错过，
+    浪起浪伏，
+    并非全部生活。 
+    
+    要是岁月蹉跎，
+    那就认真把握，
+    不是忙忙碌碌，
+    才能有所收获。
+    
+    别说如果，
+    要珍惜允诺，
+    既然爱过，
+    就别怕寂寞。 
+    
+    诚如你所说，
+    人应该活得洒脱，
+    那么，就爱这世界，
+    爱这花—开—花—落。
+ </p>
+</div>
+
+
+<div class="msn-item msn-item_me">
+  	<div class="msn-head">
+  		<img src="img/1.jpg" alt="">
+  	</div>
+  <p class="msn-content">
+    夏花烂漫，
+    人情料峭，
+    惜香漫语频频道。
+    真言却惹庸人恼，
+    苟谈逍遥。
+
+    一枕相思，
+    梦也无逃，
+    冷月无声徒寂寥。
+    青丝空换白首老，
+    生得悄悄。
+  </p>
+</div>
+
+
+<div class="item">
+    <div class="item-head">我不变</div>
+    <div class="item-tail">我也不变</div><!--我是尾，但是我放在身子的前面-->
+    <p class="item-content">拖动窗口看我72变！拖动窗口看我72变！拖动窗口看我72变！拖动窗口看我72变！拖动窗口看我72变！拖动窗口看我72变！拖动窗口看我72变！拖动窗口看我72变！拖动窗口看我72变！拖动窗口看我72变！拖动窗口看我72变！拖动窗口看我72变！</p>
+</div>
+
+</body>
+</html>

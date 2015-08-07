@@ -1,6 +1,25 @@
 @charset"utf-8";
 body{
-	background-color:red;
+	background-color:@color1;
 }
 /*会被编译到css文件中*/
 //不会被编译到css中
+@color1:#ccc;
+@color2:blue;
+@color3:black;
+ul{
+	li{
+		list-style: none;
+		a{
+			display: block;
+			color: @color2;
+			font-family: "微软雅黑";
+			font-size: 32px;
+			text-decoration: none;
+			&:hover{
+				color:@color3; 
+			}
+		}
+
+	}
+}
