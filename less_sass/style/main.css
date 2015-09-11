@@ -1,0 +1,9 @@
+@charset "utf-8";
+/*会被编译到css文件中；*/
+div {
+  -webkit-box-shadow: 0 0 10px #000000 outset;
+  -moz-box-shadow: 0 0 10px #000000 outset;
+  -o-box-shadow: 0 0 10px #000000 outset;
+  -ms-box-shadow: 0 0 10px #000000 outset;
+  box-shadow: 0 0 10px #000000 outset;
+}
