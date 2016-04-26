@@ -14,13 +14,49 @@
 //});
 
 //es6的对象合并方法assign,可以很方便的把字符转变为类数组对象
-
-  String.prototype.deleteBlank=deleteBlank;	 
-  var str="hello world my friends";
-  console.log(Object.assign({},str.deleteBlank()));//首个参数不能为undefined 和null
-  
-  function deleteBlank(){
-  	return this.replace(/\s/g,"");
+	
+	//箭头函数的this指向定义时的所在对象，此时即是global对象，所以会报错；
+  //String.prototype.deleteBlank= (this)=> {return this.replace(/\s/g,"");};
+  'use strict'
+  String.prototype.toArrObj=toArrObj;
+  String.prototype.toArrself=toArrself;
+  let str="hello world my friends";
+  //assign函数首个参数不能为undefined 和null
+  console.log(`STR became ${str}`);
+  printCharacter(str);
+  function printCharacter(str){
+  	//for(let i in obj){
+	//	console.log(obj[i]);
+	//}
+	// for(let i=0,l=obj.length;i<l;i++){
+	// 	console.log(obj[i]);
+	// }
+  console.log(str.toArrObj());
+  console.log(str.toArrself());
+  }
+  //function deleteBlank(){
+    //去除所有字符串的空白字符
+  //	return this.replace(/\s/g,"");
+  //}
+  function toArrObj(){
+  //将字符串变为一个类数组对象
+	let self=this,
+	    l=0,
+	    obj={};
+	self=self.replace(/\s/g,"");
+	obj=Object.assign({},self);
+	for(let i in obj){l+=1;}
+	obj.length=l;
+	return obj;
+  }
+  function toArrself(){
+  //将字符串变为一个数组
+  let self=this.toArrObj(),
+      arr=[];
+  for(let i=0,l=self.length;i<l;i++){
+    arr.push(self[i]);
+  }
+  return arr;
   }
 //const fs=require("fs");
 
