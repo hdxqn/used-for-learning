@@ -1,0 +1,27 @@
+@charset "utf-8"; 
+// #st:lessc;
+//开启less编译模式；
+html,body{ 
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background: #2C363F;
+}
+#container{
+	@size:60vh;
+	position: absolute;
+	width: @size;
+	height: @size;
+	top: 50%;
+	left: 50%;
+	margin: -@size/2 0 0 -@size/2;
+	background: #FFFFCC;
+}
+@screen:8000px/6;
+@media screen and (min-width: @screen){
+	#container{
+		widows: 800px;
+		height: 800px;
+		margin: -400px 0 0 -400px;
+	}
+}
