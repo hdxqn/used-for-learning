@@ -1,6 +1,64 @@
 @charset "utf-8"; 
 // #st:lessc;
 //开启less编译模式；
+.mobileHandler(){
+	//移动端禁止选中以及点击高亮显示
+-webkit-tap-highlight-color: transparent;
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-khtml-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none; 
+}
+.box-sizing(@box:border-box){
+  -webkit-box-sizing:@box;
+  -moz-box-sizing:@box;
+  -ms-box-sizing:@box;
+  -o-box-sizing:@box;
+  box-sizing:@box;
+}
+.transition(@prop:all,@time:.8s,@reset...){
+	-webkit-transition:@prop @time @reset;
+  -moz-transition:@prop @time @reset;
+  -o-transition:@prop @time @reset;
+  transition:@prop @time @reset;
+}
+.border-radius(@radius: 5px) {
+    border-radius: @radius;
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+}
+.origin(@position:center center){
+	//定义transform变化中心
+	-webkit-transform-origin:@position;
+  -moz-transform-origin:@position;
+  -o-transform-origin:@position;
+  -ms-transform-origin:@position;
+   transform-origin:@position;
+}
+.scale(@x:1,@y:1,@z:1){
+	//缩放设置；
+  -webkit-transform:scale3D(@x,@y,@z);
+  -moz-transform:scale3D(@x,@y,@z);
+  -o-transform:scale3D(@x,@y,@z);
+  //IE兼容；
+  -ms-transform:translateY(@y);
+  -ms-transform:translateX(@x);
+  transform:scale3D(@x,@y,@z);
+}
+.translate(@x:0,@y:0,@z:0){
+	//偏移设置；
+  -webkit-transform:translate3D(@x,@y,@z);
+  -moz-transform:translate3D(@x,@y,@z);
+  -o-transform:translate3D(@x,@y,@z);
+  //IE兼容；
+  -ms-transform:translateY(@y);
+  -ms-transform:translateX(@x);
+  transform:translate3D(@x,@y,@z);
+}
+
+//以上都是工具函数
 html,body{ 
 	width: 100%;
 	height: 100%;
@@ -8,20 +66,63 @@ html,body{
 	background: #2C363F;
 }
 #container{
-	@size:60vh;
+	@size:66vh;
 	position: absolute;
+	padding: @size/50;
 	width: @size;
 	height: @size;
 	top: 50%;
 	left: 50%;
 	margin: -@size/2 0 0 -@size/2;
 	background: #FFFFCC;
+	.box-sizing;
 }
 @screen:8000px/6;
-@media screen and (min-width: @screen){
+@media screen and (max-width: @screen){
 	#container{
-		widows: 800px;
+		width: 800px;
 		height: 800px;
+		padding: 16px;
 		margin: -400px 0 0 -400px;
 	}
 }
+.pieces{
+	//每块拼图的基本样式
+	position: absolute;
+	border:2px solid #FFFFCC;
+	background-repeat:no-repeat;
+	.box-sizing;
+	.transition(@prop:transform;@time:0.8s;ease-in);
+}
+.picss(5;3);
+.picss(@l:10;@i:1) when ( @i =< @l ){
+	.pi@{i}{
+		//i*i时的每块拼图大小
+		width: 96%/@i;
+		height: 96%/@i;
+		background-size:100%*@i 100%*@i;
+	}
+	.picss(5;(@i+1));
+}
+.imgcss(6;1);
+.imgcss(@l:10;@i:1) when ( @i =< @l ){
+	.img@{i}{
+		//第i张图片
+		background: url("img/pz-@{i}.jpg")
+	}
+	.imgcss(6;(@i+1));
+}
+//双重循环不会啊
+// .pi3css(0;0;5;5);
+// .pi3css(@i;@j;@r;@l) when( @i =< @r ) and ( @j =< @l ){
+// 	.pi3-@{i}-@{j}{
+// 		color: red;
+// 	}
+// 	.pi3-@{j}-@{i}{
+// 		color: red;
+// 	}
+// 	.pi3css((@i+1);(@j+1);5;5);
+// }
+// .pi3cssrow(@i;@j;@r;@j) when {
+
+// }
