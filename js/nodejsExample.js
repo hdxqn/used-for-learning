@@ -31,8 +31,11 @@
 	// for(let i=0,l=obj.length;i<l;i++){
 	// 	console.log(obj[i]);
 	// }
-  console.log(str.toArrObj());
-  console.log(str.toArrself());
+  //console.log(str.toArrObj());
+  //console.log(str.toArrself());
+  var arr1=[1,2,3,4,5,5,5,6,6,7,7,7,8];
+  var set1=Array.from(new Set(arr1));
+  console.log(set1);
   }
   //function deleteBlank(){
     //去除所有字符串的空白字符
@@ -58,6 +61,7 @@
   }
   return arr;
   }
+
 //const fs=require("fs");
 
 //fs.readFile("nodeText.text",(err,data)=>{
@@ -68,3 +72,156 @@
 //});
 
 //console.log("程序执行结束！");
+
+
+var arrE=[
+{data:{
+  weight:1
+}},
+{data:{
+  weight:2
+}},
+{data:{
+  weight:3
+}},
+{data:{
+  stick:1,
+  weight:4
+}},
+{data:{
+  // weight:5
+}},
+{data:{
+  weight:6
+}},
+{data:{
+  weight:7
+}},
+{data:{
+  // weight:8
+}},
+{data:{
+  weight:9
+}},{data:{
+  weight:10
+}},
+
+{data:{
+  weight:11
+}},{data:{
+  weight:12
+}},
+
+];
+// console.log(dataSotr(arrE));
+function dataSotr(arg,cur){
+  //根据置顶和权重重新排序
+  let arr=[].concat(arg),
+      stickArr=[],
+      stickArrNW=[],
+      weightArr=[],
+      weightArrNW=[],
+      target=null,
+      sl=0,
+      wl=0;
+      for(let i=0,l=arr.length;i<l;i++){
+        if(+arr[i]["data"]["stick"]==1){
+          if(arr[i]["data"]["weight"]== void 0){
+            stickArrNW.push(arr[i]);
+            continue;
+          }
+          stickArr.push(arr[i]);
+          continue;
+        }
+        if(arr[i]["data"]["weight"]== void 0){
+            weightArrNW.push(arr[i]);
+            continue;
+          }
+        weightArr.push(arr[i]);
+      }
+      if(stickArr.length>1){
+        stickArr.sort(function(a,b){
+          if(typeof +a["data"]["weight"]=="number"&&typeof +b["data"]["weight"]=="number"){
+            return b["data"]["weight"]-a["data"]["weight"];
+          }else if(typeof a["data"]["weight"]=="undefined"&&typeof b["data"]["weight"]!="undefined"){
+            return 10;
+          }else if(typeof a["data"]["weight"]!="undefined"&&typeof b["data"]["weight"]=="undefined"){
+            return -10;
+          }else if(typeof a["data"]["weight"]=="undefined"&&typeof b["data"]["weight"]=="undefined"){
+            return 0;
+          }
+          return 0;
+        });
+      }
+      if(weightArr.length>1){
+        weightArr.sort(function(a,b){
+          if(typeof +a["data"]["weight"]=="number"&&typeof +b["data"]["weight"]=="number"){
+            return b["data"]["weight"]-a["data"]["weight"];
+          }else if(typeof a["data"]["weight"]=="undefined"&&typeof b["data"]["weight"]!="undefined"){
+            return 10;
+          }else if(typeof a["data"]["weight"]!="undefined"&&typeof b["data"]["weight"]=="undefined"){
+            return -10;
+          }else if(typeof a["data"]["weight"]=="undefined"&&typeof b["data"]["weight"]=="undefined"){
+            return 0;
+          }
+          return 0;
+        });
+      }
+      if(typeof cur=="undefined"){
+        stickArr=stickArr.concat(stickArrNW);
+        weightArr=weightArr.concat(weightArrNW);
+        return stickArr.concat(weightArr);
+      }
+      if(+cur["data"]["stick"]==1){
+        sl=stickArr.length;
+        for(let j=0,k=stickArr.length;j<k;j++){
+          if(+stickArr[j]["data"]["weight"]<= +cur["data"]["weight"]){
+                stickArr.splice(j,0,cur);
+            break;
+          }
+        }
+        if(stickArr.length==sl){stickArr.push(cur);}
+      }else{
+          wl=weightArr.length;
+              for(let o=0,p=weightArr.length;o<p;o++){
+                if(+weightArr[o]["data"]["weight"]<= +cur["data"]["weight"]){
+                    // console.log(typeof weightArr[o]["data"]["weight"]);
+                    // console.log(typeof cur["data"]["weight"]);
+                      weightArr.splice(o,0,cur);
+                break;
+            }
+          }
+          if(weightArr.length==wl){weightArr.push(cur);}
+      }
+      // console.log(stickArr);
+      // console.log(weightArr);
+      stickArr=stickArr.concat(stickArrNW);
+      weightArr=weightArr.concat(weightArrNW);
+      target=stickArr.concat(weightArr);
+      // console.log(target);
+      return target;
+}
+
+function* stateFn(arr){
+   for(let i=0,l=arr.length;i<l;i++){
+    if(i+1==l){return arr[i]}
+      yield arr[i];
+   }
+}
+function print(){
+  let s=stateFn(arrE);
+  let t=setInterval(function(){
+    let b=s.next();
+    console.log(b);
+    if(b["done"]){clearInterval(t);}
+  },1000);
+}
+print();
+ // var regStr="2016-05-18 11:40:54";
+ // console.log(regStr.match(/[0-9]{4}?/)[0]);
+ // console.log(regStr.match(/-[0-9]{2}-/)[0].replace(/-/g,""));
+ // console.log(regStr.match(/-[0-9]{2}\s/)[0].replace(/-/g,"").replace(/\s/g,""));
+ // console.log(regStr.match(/\s[0-9]{2}:/)[0].replace(/:/g,"").replace(/\s/g,""));
+ // console.log(regStr.match(/:[0-9]{2}:/)[0].replace(/:/g,"").replace(/\s/g,""));
+ // console.log(regStr.match(/:[0-9]{2}$/)[0].replace(/:/g,"").replace(/\s/g,""));
+ // console.log(regStr.match(/aa/g));

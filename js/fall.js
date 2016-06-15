@@ -19,7 +19,7 @@ window.onload=function(){
 			waterfall('main','box');
 		}
 		
-	}
+	} 
 }
 function waterfall(parent,box){
 	//取出父元素main下所有class为box的元素

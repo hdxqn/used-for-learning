@@ -199,7 +199,7 @@ function mainOneAnimation(){
         $(eleb).addClass("in").removeClass("out");
     }, 300);
 
- }
+ } 
  function positionSet(ts) {
      var h=ts.clientHeight,
          w=ts.clientWidth;
